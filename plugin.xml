@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-n22download" version="1.0.2"
+	xmlns="http://apache.org/cordova/ns/plugins/1.0"
+	xmlns:android="http://schemas.android.com/apk/res/android">
+<name>N22Download</name>
+<js-module name="N22Download" src="www/N22Download.js">
+<clobbers target="cordova.plugins.N22Download" /></js-module>
+<platform name="android">
+
+<config-file parent="/*" target="res/xml/config.xml">
+<feature name="N22Download">
+<param name="android-package" value="com.n22.plugin.download.N22Download" />
+<param name="onload" value="true"/>
+</feature>
+</config-file>
+
+
+<config-file parent="/manifest" target="AndroidManifest.xml">
+      <uses-permission android:name="android.permission.INTERNET"/>
+      <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+      <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+      <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+</config-file>
+
+<config-file parent="/manifest/application" target="AndroidManifest.xml">
+      <activity
+            android:name="com.n22.plugin.download.N22DownloadActivity"
+            android:label="N22DownloadActivity"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.DeviceDefault.NoActionBar"
+            >
+            <intent-filter>
+                <action android:name="com.n22.plugin.download"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+
+            </intent-filter>
+        </activity>
+		<provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="$PACKAGE_NAME.provider"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+</config-file>
+
+<source-file src="src/android/com/n22/plugin/download/N22Download.java"
+	target-dir="src/com/n22/plugin/download" />
+	<source-file src="src/android/com/n22/utils/FileDownLoader.java"
+	target-dir="src/com/n22/utils" />
+	<source-file src="src/android/com/n22/service/SSLSocketFactoryEx.java"
+	target-dir="src/com/n22/service" />
+	<source-file src="src/android/com/n22/service/MyHttpClient.java"
+	target-dir="src/com/n22/service" />
+	<source-file src="src/android/com/n22/utils/FileUtil.java"
+	target-dir="src/com/n22/utils" />
+	<source-file src="src/android/com/n22/utils/CommonUtil.java"
+	target-dir="src/com/n22/utils" />
+	<source-file src="src/android/com/n22/utils/ZipUtil.java"
+	target-dir="src/com/n22/utils" />
+	<source-file src="src/android/com/n22/utils/JsonUtil.java"
+	target-dir="src/com/n22/utils" />
+	<source-file src="src/android/com/n22/thread/ThreadPool.java"
+	target-dir="src/com/n22/thread" />
+	<source-file src="src/android/com/n22/thread/SafeThread.java"
+	target-dir="src/com/n22/thread" />
+	<source-file src="src/android/com/n22/utils/ShareRefrenceUtil.java"
+	target-dir="src/com/n22/utils" />
+	<source-file src="src/android/com/n22/utils/MResource.java"
+	target-dir="src/com/n22/utils" />
+	<resource-file src="src/android/res/drawable-port-hdpi/download_background.png"
+	target="res/drawable-port-hdpi/download_background.png" />
+	<resource-file src="src/android/res/layout/n22_download.xml"
+	target="res/layout/n22_download.xml" />
+	<resource-file src="src/android/res/values/download_styles.xml"
+	target="res/values/download_styles.xml" />
+	<resource-file src="src/android/res/xml/progress_color_horizontal.xml"
+	target="res/xml/progress_color_horizontal.xml" />
+	<resource-file src="src/android/res/xml/provider_paths.xml"
+	target="res/xml/provider_paths.xml" />
+	<source-file src="src/android/com/n22/plugin/download/N22DownloadActivity.java"
+	target-dir="src/com/n22/plugin/download" />
+	<source-file src="src/android/libs/gson-2.2.4.jar" target-dir="libs"/>
+	<orderEntry type="library" name="libs/gson-2.2.4.jar" level="project" />
+	<source-file src="src/android/libs/org.apache.http.legacy.jar" target-dir="libs"/>
+	<orderEntry type="library" name="libs/org.apache.http.legacy.jar" level="project" />
+	<source-file src="src/android/libs/android-support-v4.jar" target-dir="libs"/>
+	<orderEntry type="library" name="libs/android-support-v4.jar" level="project" />
+	
+	</platform></plugin>
