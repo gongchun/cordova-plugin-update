@@ -1,9 +1,9 @@
 {
-  "name": "n22download",
+  "name": "cordova-plugin-update",
   "version": "1.0.0",
   "description": "1",
   "cordova": {
-    "id": "cordova-plugin-n22download",
+    "id": "cordova-plugin-update",
     "platforms": [
       "android"
     ]
