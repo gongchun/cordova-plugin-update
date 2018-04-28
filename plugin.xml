@@ -88,7 +88,7 @@
 	<orderEntry type="library" name="libs/gson-2.2.4.jar" level="project" />
 	<source-file src="src/android/libs/org.apache.http.legacy.jar" target-dir="libs"/>
 	<orderEntry type="library" name="libs/org.apache.http.legacy.jar" level="project" />
-	<source-file src="src/android/libs/android-support-v4.jar" target-dir="libs"/>
-	<orderEntry type="library" name="libs/android-support-v4.jar" level="project" />
+<!-- 	<source-file src="src/android/libs/android-support-v4.jar" target-dir="libs"/>
+	<orderEntry type="library" name="libs/android-support-v4.jar" level="project" /> -->
 	
 	</platform></plugin>
