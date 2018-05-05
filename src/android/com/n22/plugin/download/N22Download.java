@@ -4,8 +4,11 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.apache.cordova.CordovaArgs;
 import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
@@ -37,7 +40,7 @@ import com.n22.utils.ZipUtil;
 /**
  * This class echoes a string called from JavaScript.
  */
-public class N22Download extends CordovaPlugin {
+public class 	N22Download extends CordovaPlugin {
 	public  CallbackContext currentCallbackContext;
 	Handler handler;
 	int DOWNLOAD_END_FULLDOSE = 6;
@@ -116,7 +119,7 @@ public class N22Download extends CordovaPlugin {
 	}
 
 	@Override
-	public boolean execute(String action, String args, CallbackContext callbackContext) throws JSONException {
+	public boolean execute(String action, final CordovaArgs args, CallbackContext callbackContext) throws JSONException {
 		Toast.makeText(cordova.getActivity(), "进入方法", Toast.LENGTH_LONG).show();
 		currentCallbackContext = callbackContext;
 		if (action.equals("file")) {
@@ -132,14 +135,14 @@ public class N22Download extends CordovaPlugin {
 //			this.unpack(map);
 //			return true;
 		}else if(action.equals("incremental")){//增量下载
-			HashMap<String,String> map = (HashMap<String, String>) JsonUtil.jsonToObject(args, HashMap.class);
+			HashMap<String,String> map = (HashMap<String, String>) JsonUtil.jsonToObject(args.getString(0), HashMap.class);
 //			intentDownload("incremental",map);
 			fileName = "www.zip";
 			message = "增量"+map.get("versionCode")+"版本";
 			update(map,fileName,DOWNLOAD_END);
 			return true;
 		}else if(action.equals("full")){
-			HashMap<String,String> map = (HashMap<String, String>) JsonUtil.jsonToObject(args, HashMap.class);
+			HashMap<String,String> map = (HashMap<String, String>) JsonUtil.jsonToObject(args.getString(0), HashMap.class);
 //			intentDownload("full",map);
 			fileName = "android.apk";
 			message = "全量"+map.get("versionCode")+"版本";
